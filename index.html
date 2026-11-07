@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question For You ❤️</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f0c29; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow: hidden; position: relative; }
+        .bg-photo { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45) blur(3px); z-index: 1; display: none; }
+        .card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 40px 30px; border-radius: 20px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); max-width: 450px; width: 90%; transition: all 0.5s ease; }
+        h1 { color: #fff; font-size: 1.8rem; margin-bottom: 30px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .btn-group { display: flex; justify-content: center; gap: 20px; position: relative; min-height: 60px; }
+        button { padding: 12px 30px; font-size: 1.1rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        #yesBtn { background-color: #ff4757; color: white; }
+        #noBtn { background-color: #f1f2f6; color: #2f3542; position: absolute; right: 50px; }
+        .hidden { display: none; }
+        .love-message { color: #f1f1f1; font-size: 1.1rem; line-height: 1.6; margin-top: 15px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+        .diwali-title { color: #ffc107; font-size: 2rem; margin-bottom: 15px; text-shadow: 0 0 15px rgba(255, 193, 7, 0.6); }
+        .rose { position: absolute; top: -50px; font-size: 24px; user-select: none; pointer-events: none; animation: fall linear infinite; z-index: 5; }
+        @keyframes fall { 0% { transform: translateY(-50px) rotate(0deg); opacity: 1; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; } }
+    </style>
+</head>
+<body>
+    <img src="her-photo.jpg" alt="Her Photo" class="bg-photo" id="bgPhoto">
+    <div class="card" id="mainCard">
+        <div id="questionStep">
+            <h1>Do you love me? ❤️</h1>
+            <div class="btn-group">
+                <button id="yesBtn" onclick="sayYes()">Yes</button>
+                <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()">No</button>
+            </div>
+        </div>
+        <div id="responseStep" class="hidden">
+            <h1 class="diwali-title">✨ Happy Diwali, My Janu! ✨</h1>
+            <p class="love-message">Just like diyas light up the darkest nights, you bring endless light, warmth, and beauty into my world. No words can truly measure how much I love you. You mean everything to me, today and always! ❤️</p>
+        </div>
+    </div>
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 150 - 75;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+        function sayYes() {
+            document.getElementById('questionStep').classList.add('hidden');
+            document.getElementById('responseStep').classList.remove('hidden');
+            document.getElementById('bgPhoto').style.display = 'block';
+            document.getElementById('mainCard').style.background = 'rgba(0, 0, 0, 0.5)';
+            document.getElementById('mainCard').style.border = '1px solid rgba(255, 255, 255, 0.3)';
+            startRosesRain();
+        }
+        function startRosesRain() {
+            setInterval(() => {
+                const rose = document.createElement('div');
+                rose.classList.add('rose');
+                rose.innerHTML = '🌹';
+                rose.style.left = Math.random() * 100 + 'vw';
+                rose.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                rose.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                document.body.appendChild(rose);
+                setTimeout(() => { rose.remove(); }, 5000);
+            }, 150);
+        }
+    </script>
+</body>
+</html>
